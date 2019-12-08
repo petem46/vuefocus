@@ -1,13 +1,15 @@
 <template>
     <div class="users">
+        <h1>Users Index Page</h1>
         <div v-if="error" class="error">
             <p>{{ error }}</p>
         </div>
-        
+
         <ul v-if="users">
             <li v-for="{ id, name, email } in users">
                 <strong>Name:</strong> {{ name }},
                 <strong>Email:</strong> {{ email }}
+                <router-link :to="{ name: 'users.edit', params: { id } }">Edit</router-link>
             </li>
         </ul>
 
@@ -15,6 +17,9 @@
             <button :disabled="! prevPage" @click.prevent="goToPrev">Previous</button>
             {{ paginatonCount }}
             <button :disabled="! nextPage" @click.prevent="goToNext">Next</button>
+        </div>
+        <div>
+            <router-link :to="{ name: 'users.create' }">Add User</router-link>
         </div>
     </div>
 </template>
