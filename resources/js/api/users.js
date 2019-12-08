@@ -5,7 +5,7 @@ export default {
       return axios.get('/api/users');
     },
     create(data) {
-        return client.post('users', data);
+        return axios.post('/api/users', data);
     },
     find(id) {
       return axios.get(`/api/users/${id}`);

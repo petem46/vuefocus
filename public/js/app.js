@@ -1924,8 +1924,13 @@ __webpack_require__.r(__webpack_exports__);
 
       this.saving = true;
       this.message = false;
-      _api_users__WEBPACK_IMPORTED_MODULE_0__["default"].create(this.user).then(function (data) {
-        console.log(data);
+      _api_users__WEBPACK_IMPORTED_MODULE_0__["default"].create(this.user).then(function (response) {
+        _this.$router.push({
+          name: 'users.edit',
+          params: {
+            id: response.data.data.id
+          }
+        });
       })["catch"](function (e) {
         _this.message = e.response.data.message || 'There was an issue creating the user.';
       }).then(function () {
@@ -2885,6 +2890,7 @@ var render = function() {
     _c(
       "form",
       {
+        attrs: { method: "POST" },
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -18227,7 +18233,7 @@ __webpack_require__.r(__webpack_exports__);
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get('/api/users');
   },
   create: function create(data) {
-    return client.post('users', data);
+    return axios__WEBPACK_IMPORTED_MODULE_0___default.a.post('/api/users', data);
   },
   find: function find(id) {
     return axios__WEBPACK_IMPORTED_MODULE_0___default.a.get("/api/users/".concat(id));
